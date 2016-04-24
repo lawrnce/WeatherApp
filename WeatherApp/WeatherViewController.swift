@@ -75,6 +75,7 @@ class WeatherViewController: UIViewController {
                 self.activityIndicator.startAnimating()
                 self.locationManager.startUpdatingLocation()
                 self.alertImageView.hidden = true
+                self.hourlyTableView.hidden = true
             }
         }
     }
