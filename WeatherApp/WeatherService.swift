@@ -16,8 +16,10 @@ let kFORECAST_API_URL = "https://api.forecast.io/forecast/"
 class WeatherService {
     
     /**
+        Calls the Forecast.io API with paramaters for houly data.
      
-    
+        - Parameter coordinate: Geocoordinate of the area to be queried.
+        - Parameter competion: The block to execute after the HTTP call. This block returns a JSON or an error.
     */
     class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(json: JSON?, error: ErrorType?) -> Void) {
         
