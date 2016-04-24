@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
 
 class WeatherViewController: UIViewController {
 
@@ -28,6 +29,10 @@ class WeatherViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         getCurrentLocation()
+        
+        let testJSON = JSON(["hourly": ["data": [ ["temperature": 17.82, "time": 1461484800], ["temperature": 16.54, "time": 1461488400], ["temperature": 15.8, "time": 1461492000]]]])
+        
+        print(HourlyTemperatureParser.parseJSON(testJSON))
     }
     
     override func didReceiveMemoryWarning() {

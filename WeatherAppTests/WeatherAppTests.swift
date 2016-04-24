@@ -39,8 +39,9 @@ class WeatherAppTests: XCTestCase {
     
     func testParseDataToTupleArray() {
         let testJSON = JSON(["hourly": ["data": [ ["temperature": 17.82, "time": 1461484800], ["temperature": 16.54, "time": 1461488400], ["temperature": 15.8, "time": 1461492000]]]])
-        let expectedTupleArray:[(Int, Float)] = [(1461484800, 17.82), (1461488400, 16.54), (1461492000, 15.8)]
+        var expectedOrderedDictionary = OrderedDictionary<String, [(time: String, temperature: String)]>()
+        expectedOrderedDictionary["Sunday"] = [("3 AM", "17.82 °C"), ("4 AM", "16.54 °C"), ("5 AM", "15.8 °C")]
         let result = HourlyTemperatureParser.parseJSON(testJSON)
-        XCTAssertEqual("\(expectedTupleArray)", "\(result)", "Expected parse tuple failed.")
+        XCTAssertEqual("\(expectedOrderedDictionary)", "\(result)", "Expected parse tuple failed.")
     }
 }
