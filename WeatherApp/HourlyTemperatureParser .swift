@@ -14,10 +14,10 @@ class HourlyTemperatureParser {
     /**
 
     */
-    class func parseData(json: JSON) -> [(time: Int, temperature: Float)] {
-        var hourlyData: [(time: Int, temperature: Float)] = []
+    class func parseJSON(json: JSON) -> [(Int, Float)] {
+        var hourlyData: [(Int, Float)] = []
         for item in json["hourly"]["data"].arrayValue {
-            hourlyData.append((time: item["time"].int!, temperature: item["temperature"].float!))
+            hourlyData.append((item["time"].int!, item["temperature"].float!))
         }
         return hourlyData
     }

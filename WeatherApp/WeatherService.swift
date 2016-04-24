@@ -19,7 +19,7 @@ class WeatherService {
      
     
     */
-    class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(data: JSON?, error: ErrorType?) -> Void) {
+    class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(json: JSON?, error: ErrorType?) -> Void) {
         
         let apiCall = kFORECAST_API_URL + kFORECAST_API_KEY + "/\(coordinate.latitude),\(coordinate.longitude)"
         
@@ -28,9 +28,9 @@ class WeatherService {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    completion(data: JSON(data: response.data!), error: nil)
+                    completion(json: JSON(data: response.data!), error: nil)
                 case .Failure(let error):
-                    completion(data: nil, error: error)
+                    completion(json: nil, error: error)
                 }
             }
     }
