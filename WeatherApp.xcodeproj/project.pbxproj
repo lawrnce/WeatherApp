@@ -24,6 +24,7 @@
 		E6FBC75D1CCD3D35006A1EFA /* HourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */; };
 		E6FBC7611CCD52CC006A1EFA /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FBC7601CCD52CC006A1EFA /* OrderedDictionary.swift */; };
 		E6FBC7621CCD533B006A1EFA /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FBC7601CCD52CC006A1EFA /* OrderedDictionary.swift */; };
+		E6FBC7641CCD68A0006A1EFA /* ReverseGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FBC7631CCD68A0006A1EFA /* ReverseGeocoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		E6FBC75A1CCD3D35006A1EFA /* HourlyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyTableViewCell.swift; sourceTree = "<group>"; };
 		E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourlyTableViewCell.xib; sourceTree = "<group>"; };
 		E6FBC7601CCD52CC006A1EFA /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		E6FBC7631CCD68A0006A1EFA /* ReverseGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeocoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				E6F79AB41CCC5B97000FDEA8 /* WeatherViewController.swift */,
 				E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */,
 				E6F79AE31CCCB562000FDEA8 /* HourlyTemperatureParser .swift */,
+				E6FBC7631CCD68A0006A1EFA /* ReverseGeocoder.swift */,
 				E6FBC75A1CCD3D35006A1EFA /* HourlyTableViewCell.swift */,
 				E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */,
 				E6FBC7601CCD52CC006A1EFA /* OrderedDictionary.swift */,
@@ -410,6 +413,7 @@
 				E6F79AB51CCC5B97000FDEA8 /* WeatherViewController.swift in Sources */,
 				E6FBC75C1CCD3D35006A1EFA /* HourlyTableViewCell.swift in Sources */,
 				E6FBC7611CCD52CC006A1EFA /* OrderedDictionary.swift in Sources */,
+				E6FBC7641CCD68A0006A1EFA /* ReverseGeocoder.swift in Sources */,
 				E6F79AB31CCC5B97000FDEA8 /* AppDelegate.swift in Sources */,
 				E6F79AE41CCCB562000FDEA8 /* HourlyTemperatureParser .swift in Sources */,
 			);

@@ -18,17 +18,19 @@ class WeatherViewController: UIViewController {
     private var locationManager: CLLocationManager!
     private var hourlyData: OrderedDictionary<String, [(time: String, temperature: String)]>!
     private var shouldCallAPI: Bool!
+    private var reverseGeocoder: ReverseGeocoder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
         setupTableView()
         self.shouldCallAPI = true
+        self.reverseGeocoder = ReverseGeocoder()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        getCurrentLocation()
+        updateCurrentLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,22 +58,38 @@ class WeatherViewController: UIViewController {
         self.hourlyTableView.hidden = true
     }
     
-    // MARK: - Actions
+    // MARK: -- Methods
     
     /**
         Begins the location manager.
-    */
-    func getCurrentLocation() {
+     */
+    func updateCurrentLocation() {
         if (CLLocationManager.locationServicesEnabled() == true) {
             self.locationManager.startUpdatingLocation()
         }
     }
     
+    /**
+        Get location name.
+     */
+    func updateLocationNameForCoordinate(coordinate: CLLocationCoordinate2D) {
+        self.reverseGeocoder.reverseGeocode(coordinate) { (name, error) -> Void in
+            if (error == nil) {
+                self.topBar.topItem?.title = name!
+            } else {
+                self.topBar.topItem?.title = ""
+            }
+        }
+    }
+     
+    /**
+        Refresh data.
+     */
     @IBAction func refreshButtonPressed(sender: AnyObject) {
         self.shouldCallAPI = true
         self.hourlyData = nil
-        self.locationManager.startUpdatingLocation()
         self.hourlyTableView.hidden = true
+        updateCurrentLocation()
     }
 }
 
@@ -142,6 +160,9 @@ extension WeatherViewController: CLLocationManagerDelegate {
                     
                 }
             })
+            
+            // Reverse Geocode name
+            updateLocationNameForCoordinate((manager.location?.coordinate)!)
         }
     }
 }
