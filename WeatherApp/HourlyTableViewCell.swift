@@ -21,17 +21,10 @@ class HourlyTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupCurrentIndicatorView()
     }
     
     override func prepareForReuse() {
         timeLabel.text = ""
         temperatureLabel.text = ""
-    }
-    
-    // MARK: -- Setup
-    private func setupCurrentIndicatorView() {
-//        self.currentIndicatorView.layer.cornerRadius = self.currentIndicatorView.frame.width / 2.0
-//        self.currentIndicatorView.clipsToBounds = true
     }
 }

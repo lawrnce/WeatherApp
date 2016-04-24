@@ -29,10 +29,6 @@ class WeatherViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         getCurrentLocation()
-        
-        let testJSON = JSON(["hourly": ["data": [ ["temperature": 17.82, "time": 1461484800], ["temperature": 16.54, "time": 1461488400], ["temperature": 15.8, "time": 1461492000]]]])
-        
-        print(HourlyTemperatureParser.parseJSON(testJSON))
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,6 +53,7 @@ class WeatherViewController: UIViewController {
     private func setupTableView() {
         self.hourlyTableView.registerNib(UINib(nibName: "HourlyTableViewCell", bundle: nil), forCellReuseIdentifier: kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER)
         self.hourlyTableView.allowsSelection = false
+        self.hourlyTableView.hidden = true
     }
     
     // MARK: - Actions
@@ -66,11 +63,15 @@ class WeatherViewController: UIViewController {
     */
     func getCurrentLocation() {
         if (CLLocationManager.locationServicesEnabled() == true) {
-            locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingLocation()
         }
     }
     
     @IBAction func refreshButtonPressed(sender: AnyObject) {
+        self.shouldCallAPI = true
+        self.hourlyData = nil
+        self.locationManager.startUpdatingLocation()
+        self.hourlyTableView.hidden = true
     }
 }
 
@@ -133,6 +134,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
                         // Parse the data and reload table view
                         self.hourlyData = HourlyTemperatureParser.parseJSON(json!)
                         self.hourlyTableView.reloadData()
+                        self.hourlyTableView.hidden = false
                     }
 
                 // Error
