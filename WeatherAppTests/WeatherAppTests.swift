@@ -24,8 +24,12 @@ class WeatherAppTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGET_WEATHER_DATA_FROM_API_ENDPOINT() {
+    func testGetWeatherDataFromApiEndpoint() {
+        let expectation = expectationWithDescription("GET Weather Data")
         let testCoordinate = CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522)
-        self.weatherVC.getWeatherDataForCoordinate(testCoordinate)
+        WeatherService.getWeatherDataForCoordinate(testCoordinate) { (data, error) -> Void in
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
 }

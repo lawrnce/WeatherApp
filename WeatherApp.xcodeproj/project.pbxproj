@@ -16,6 +16,7 @@
 		E6F79AC81CCC5B97000FDEA8 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AC71CCC5B97000FDEA8 /* WeatherAppTests.swift */; };
 		E6F79AD31CCC5B97000FDEA8 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AD21CCC5B97000FDEA8 /* WeatherAppUITests.swift */; };
 		E6F79AE11CCC5F92000FDEA8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */; };
+		E6F79AE21CCC6266000FDEA8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F79AE21CCC6266000FDEA8 /* WeatherService.swift in Sources */,
 				E6F79AC81CCC5B97000FDEA8 /* WeatherAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

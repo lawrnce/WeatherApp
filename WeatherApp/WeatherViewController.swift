@@ -13,11 +13,9 @@ class WeatherViewController: UIViewController {
 
     var locationManager: CLLocationManager!
     var currentGeoCoordinate: CLLocationCoordinate2D!
-    var weatherService: WeatherService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.weatherService = WeatherService()
         setupLocationManager()
         getCurrentLocation()
     }
@@ -43,12 +41,15 @@ class WeatherViewController: UIViewController {
     }
 }
 
+
 extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if (self.currentGeoCoordinate == nil) {
             self.currentGeoCoordinate = manager.location?.coordinate
-            print(self.currentGeoCoordinate)
             manager.stopUpdatingLocation()
+            WeatherService.getWeatherDataForCoordinate(self.currentGeoCoordinate, completion: { (data, error) -> Void in
+                
+            })
         }
     }
 }
