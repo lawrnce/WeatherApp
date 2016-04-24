@@ -15,12 +15,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var hourlyTableView: UITableView!
     
     var locationManager: CLLocationManager!
-    var hourlyData: OrderedDictionary<String, [(String, Float)]>!
+    var hourlyData: OrderedDictionary<String, [(time: String, temperature: Float)]>!
     var shouldCallAPI: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
+        setupTableView()
         self.shouldCallAPI = true
     }
 
@@ -67,17 +68,45 @@ class WeatherViewController: UIViewController {
 // MARK: - Table View Data Source 
 extension WeatherViewController: UITableViewDataSource {
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        guard self.hourlyData != nil else {
+            return 0
+        }
+        return self.hourlyData.keys.count
+    }
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        guard self.hourlyData != nil else {
+            return nil
+        }
+        return self.hourlyData.keys
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard self.hourlyData != nil else {
+            return 0
+        }
         let key = self.hourlyData.keys[section]
         return (self.hourlyData[key]?.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER) as! HourlyTableViewCell
-        
-        
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier(kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! HourlyTableViewCell
+        let key = self.hourlyData.keys[indexPath.section]
+        let time = self.hourlyData[key]![indexPath.row].time
+        cell.timeLabel.text = time
         return UITableViewCell()
+    }
+}
+
+// MARK: - Table View Delegate
+extension WeatherViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20.0))
+        
+        headerView.backgroundColor = UIColor.cyanColor()
+        
+        return headerView
     }
 }
 

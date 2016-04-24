@@ -31,7 +31,7 @@ class HourlyTableViewCell: UITableViewCell {
     
     // MARK: -- Setup
     private func setupCurrentIndicatorView() {
-        self.currentIndicatorView.layer.cornerRadius = self.currentIndicatorView.frame.width / 2.0
-        self.currentIndicatorView.clipsToBounds = true
+//        self.currentIndicatorView.layer.cornerRadius = self.currentIndicatorView.frame.width / 2.0
+//        self.currentIndicatorView.clipsToBounds = true
     }
 }

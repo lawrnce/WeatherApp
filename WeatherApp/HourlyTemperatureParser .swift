@@ -17,9 +17,9 @@ class HourlyTemperatureParser {
         - Parameter json: JSON data from a Forecast.io call.
         - Returns: An ordered dictionary with key as the day and value as an array of times and temperature. 
     */
-    class func parseJSON(json: JSON) -> OrderedDictionary<String, [(String, Float)]> {
+    class func parseJSON(json: JSON) -> OrderedDictionary<String, [(time: String, temperature: Float)]> {
         
-        var hourlyData = OrderedDictionary<String, [(String, Float)]>()
+        var hourlyData = OrderedDictionary<String, [(time: String, temperature: Float)]>()
         var currentDay: String!
         
         let dayFormatter = NSDateFormatter()
@@ -43,14 +43,13 @@ class HourlyTemperatureParser {
             // set first day and check if new day
             if (currentDay == nil || currentDay != dayString) {
                 currentDay = dayString
-                hourlyData[currentDay] = [(String, Float)]()
+                hourlyData[currentDay] = [(time: String, temperature: Float)]()
             }
             
             // append new time and temperature
-            hourlyData[currentDay]?.append((timeString, item["temperature"].float!))
+            hourlyData[currentDay]?.append((time: timeString, temperature: item["temperature"].float!))
         }
         
-        print(hourlyData)
         return hourlyData
     }
 }
