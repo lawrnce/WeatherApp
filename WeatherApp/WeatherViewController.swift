@@ -17,9 +17,16 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var alertImageView: UIImageView!
     
+    // The location manager
     private var locationManager: CLLocationManager!
+    
+    // Data model for time and temperature
     private var hourlyData: OrderedDictionary<String, [(time: String, temperature: String)]>!
+    
+    // Bool to determine if API should be called
     private var shouldCallAPI: Bool!
+    
+    // Reverse Gecoder to find location name
     private var reverseGeocoder: ReverseGeocoder!
     
     override func viewDidLoad() {
@@ -110,7 +117,6 @@ extension WeatherViewController: UITableViewDataSource {
         guard self.hourlyData != nil else {
             return 0
         }
-        // Display today and tomorrow for demo
         return self.hourlyData.keys.count
     }
     
