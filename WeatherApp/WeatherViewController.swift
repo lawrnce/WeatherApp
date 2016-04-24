@@ -8,18 +8,16 @@
 
 import UIKit
 import CoreLocation
-import Alamofire
-
-let kFORECAST_API_KEY = "5978bff4ccea26c30b3b97b0e818e369"
-let kFORECAST_API_URL = "https://api.forecast.io/forecast/"
 
 class WeatherViewController: UIViewController {
 
     var locationManager: CLLocationManager!
     var currentGeoCoordinate: CLLocationCoordinate2D!
+    var weatherService: WeatherService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.weatherService = WeatherService()
         setupLocationManager()
         getCurrentLocation()
     }
@@ -42,10 +40,6 @@ class WeatherViewController: UIViewController {
             }
             locationManager.startUpdatingLocation()
         }
-    }
-    
-    func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D) {
-        
     }
 }
 
