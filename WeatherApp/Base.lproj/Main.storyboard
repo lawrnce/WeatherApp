@@ -24,7 +24,13 @@
                                     <constraint firstAttribute="height" constant="64" id="1fc-3W-vI5"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="qz7-bA-BYH"/>
+                                    <navigationItem title="Title" id="qz7-bA-BYH">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="dQu-cc-bna">
+                                            <connections>
+                                                <action selector="refreshButtonPressed:" destination="BYZ-38-t0r" id="stX-SN-5Ti"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gW8-Oi-mJi">

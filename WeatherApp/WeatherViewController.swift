@@ -14,9 +14,9 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var hourlyTableView: UITableView!
     
-    var locationManager: CLLocationManager!
-    var hourlyData: OrderedDictionary<String, [(time: String, temperature: Float)]>!
-    var shouldCallAPI: Bool!
+    private var locationManager: CLLocationManager!
+    private var hourlyData: OrderedDictionary<String, [(time: String, temperature: String)]>!
+    private var shouldCallAPI: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,7 @@ class WeatherViewController: UIViewController {
     */
     private func setupTableView() {
         self.hourlyTableView.registerNib(UINib(nibName: "HourlyTableViewCell", bundle: nil), forCellReuseIdentifier: kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER)
+        self.hourlyTableView.allowsSelection = false
     }
     
     // MARK: - Actions
@@ -63,6 +64,9 @@ class WeatherViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
+    
+    @IBAction func refreshButtonPressed(sender: AnyObject) {
+    }
 }
 
 // MARK: - Table View Data Source 
@@ -72,6 +76,7 @@ extension WeatherViewController: UITableViewDataSource {
         guard self.hourlyData != nil else {
             return 0
         }
+        // Display today and tomorrow for demo
         return self.hourlyData.keys.count
     }
     
@@ -86,26 +91,16 @@ extension WeatherViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER, forIndexPath: indexPath) as! HourlyTableViewCell
         let key = self.hourlyData.keys[indexPath.section]
-        let time = self.hourlyData[key]![indexPath.row].time
-        cell.timeLabel.text = time
+        cell.timeLabel.text = self.hourlyData[key]![indexPath.row].time
+        cell.temperatureLabel.text = self.hourlyData[key]![indexPath.row].temperature
         return UITableViewCell()
     }
 }
 
 // MARK: - Table View Delegate
 extension WeatherViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let key = self.hourlyData.keys[section]
-        let sectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30.0))
-        sectionLabel.text = key
-        sectionLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
-        sectionLabel.backgroundColor = UIColor.whiteColor()
-        sectionLabel.textAlignment = .Center
-        return sectionLabel
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.hourlyData.keys[section]
     }
 }
 
