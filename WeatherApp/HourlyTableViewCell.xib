@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HourlyTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="463" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="463" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jza-ZO-vcb">
+                        <rect key="frame" x="132" y="0.0" width="200" height="43"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r75-Le-rUG">
+                                <rect key="frame" x="0.0" y="10" width="100" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prq-Fe-IMu">
+                                <rect key="frame" x="100" y="10" width="100" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="tvM-nP-bn5"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngf-Z4-1d5">
+                        <rect key="frame" x="82" y="7" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Y30-0K-Ro2"/>
+                            <constraint firstAttribute="width" constant="30" id="wdN-JU-uA5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="jza-ZO-vcb" secondAttribute="trailing" constant="44" id="7kp-BL-3IS"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="9hw-82-alo"/>
+                    <constraint firstAttribute="trailing" secondItem="jza-ZO-vcb" secondAttribute="trailing" id="A0s-dL-Xrx"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="LwL-aV-H3c"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ud7-uH-i4W"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Uju-sS-kEi"/>
+                    <constraint firstAttribute="bottom" secondItem="jza-ZO-vcb" secondAttribute="bottom" id="VqS-JA-2no"/>
+                    <constraint firstAttribute="bottom" secondItem="jza-ZO-vcb" secondAttribute="bottom" id="Yhc-FY-Jna"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="leading" secondItem="Ngf-Z4-1d5" secondAttribute="trailing" constant="20" id="ZF4-jZ-njr"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dxg-YA-Shq"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lL1-Su-DBT"/>
+                    <constraint firstItem="jza-ZO-vcb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nuf-Ur-wPS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jza-ZO-vcb" secondAttribute="bottom" id="u3m-Cr-ATq"/>
+                    <constraint firstItem="Ngf-Z4-1d5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zod-ad-Nht"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="7kp-BL-3IS"/>
+                        <exclude reference="9hw-82-alo"/>
+                        <exclude reference="A0s-dL-Xrx"/>
+                        <exclude reference="LwL-aV-H3c"/>
+                        <exclude reference="VqS-JA-2no"/>
+                        <exclude reference="dxg-YA-Shq"/>
+                        <exclude reference="nuf-Ur-wPS"/>
+                        <exclude reference="u3m-Cr-ATq"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="currentIndicatorView" destination="Ngf-Z4-1d5" id="gtR-lO-zez"/>
+                <outlet property="temperatureLabel" destination="prq-Fe-IMu" id="2Wa-5Z-KTW"/>
+                <outlet property="timeLabel" destination="r75-Le-rUG" id="Y8R-uJ-8Bp"/>
+            </connections>
+            <point key="canvasLocation" x="619.5" y="364"/>
+        </tableViewCell>
+    </objects>
+</document>

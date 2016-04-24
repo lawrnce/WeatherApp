@@ -11,9 +11,11 @@ import CoreLocation
 
 class WeatherViewController: UIViewController {
 
+    @IBOutlet weak var topBar: UINavigationBar!
+    @IBOutlet weak var hourlyTableView: UITableView!
+    
     var locationManager: CLLocationManager!
     var hourlyData: [(Int, Float)]!
-    var temperatureTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +47,10 @@ class WeatherViewController: UIViewController {
         Setups the table view.
     */
     private func setupTableView() {
-        
+        self.hourlyTableView.registerNib(UINib(nibName: "HourlyTableViewCell", bundle: nil), forCellReuseIdentifier: kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER)
     }
     
-    // MARK: - Action
+    // MARK: - Actions
     
     /**
         Begins the location manager.
@@ -68,6 +70,10 @@ extension WeatherViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(kHOURLY_TABLEVIEW_CELL_REUSE_IDENTIFIER) as! HourlyTableViewCell
+        
+        
+        
         return UITableViewCell()
     }
 }
@@ -88,7 +94,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
                 
                 // Parse the data and reload table view
                 self.hourlyData = HourlyTemperatureParser.parseJSON(json!)
-                self.temperatureTableView.reloadData()
+                self.hourlyTableView.reloadData()
             
             // Error
             } else {

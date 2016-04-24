@@ -24,4 +24,14 @@ class HourlyTemperatureParser {
         }
         return hourlyData
     }
+    
+    /**
+        Casts a timestamp into a readable format.
+     
+        - Parameter timestamp: Timestamp to be casted.
+        - Returns: A string that
+     */
+    class func castEpochToReadableTime() -> String {
+        
+    }
 }

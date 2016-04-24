@@ -20,6 +20,8 @@
 		E6F79AE21CCC6266000FDEA8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */; };
 		E6F79AE41CCCB562000FDEA8 /* HourlyTemperatureParser .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AE31CCCB562000FDEA8 /* HourlyTemperatureParser .swift */; };
 		E6F79AE51CCCB56A000FDEA8 /* HourlyTemperatureParser .swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F79AE31CCCB562000FDEA8 /* HourlyTemperatureParser .swift */; };
+		E6FBC75C1CCD3D35006A1EFA /* HourlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FBC75A1CCD3D35006A1EFA /* HourlyTableViewCell.swift */; };
+		E6FBC75D1CCD3D35006A1EFA /* HourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		E6F79AD41CCC5B97000FDEA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		E6F79AE31CCCB562000FDEA8 /* HourlyTemperatureParser .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HourlyTemperatureParser .swift"; sourceTree = "<group>"; };
+		E6FBC75A1CCD3D35006A1EFA /* HourlyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyTableViewCell.swift; sourceTree = "<group>"; };
+		E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourlyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				E6F79AB41CCC5B97000FDEA8 /* WeatherViewController.swift */,
 				E6F79AE01CCC5F92000FDEA8 /* WeatherService.swift */,
 				E6F79AE31CCCB562000FDEA8 /* HourlyTemperatureParser .swift */,
+				E6FBC75A1CCD3D35006A1EFA /* HourlyTableViewCell.swift */,
+				E6FBC75B1CCD3D35006A1EFA /* HourlyTableViewCell.xib */,
 				E6F79AB61CCC5B97000FDEA8 /* Main.storyboard */,
 				E6F79AB91CCC5B97000FDEA8 /* Assets.xcassets */,
 				E6F79ABB1CCC5B97000FDEA8 /* LaunchScreen.storyboard */,
@@ -277,6 +283,7 @@
 			files = (
 				E6F79ABD1CCC5B97000FDEA8 /* LaunchScreen.storyboard in Resources */,
 				E6F79ABA1CCC5B97000FDEA8 /* Assets.xcassets in Resources */,
+				E6FBC75D1CCD3D35006A1EFA /* HourlyTableViewCell.xib in Resources */,
 				E6F79AB81CCC5B97000FDEA8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +404,7 @@
 			files = (
 				E6F79AE11CCC5F92000FDEA8 /* WeatherService.swift in Sources */,
 				E6F79AB51CCC5B97000FDEA8 /* WeatherViewController.swift in Sources */,
+				E6FBC75C1CCD3D35006A1EFA /* HourlyTableViewCell.swift in Sources */,
 				E6F79AB31CCC5B97000FDEA8 /* AppDelegate.swift in Sources */,
 				E6F79AE41CCCB562000FDEA8 /* HourlyTemperatureParser .swift in Sources */,
 			);

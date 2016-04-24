@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Weather View Controller-->
@@ -14,13 +15,73 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkM-ZA-Zd4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="1fc-3W-vI5"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="qz7-bA-BYH"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gW8-Oi-mJi">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tth-3m-RI4" customClass="HourlyTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tth-3m-RI4" id="bu2-dW-ubx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLN-lE-nKe">
+                                                    <rect key="frame" x="127" y="11" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nu-kz-S3l">
+                                                    <rect key="frame" x="294" y="11" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wkM-ZA-Zd4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="0xQ-HE-ko4"/>
+                            <constraint firstAttribute="trailing" secondItem="wkM-ZA-Zd4" secondAttribute="trailing" id="1qu-n9-t7j"/>
+                            <constraint firstItem="wkM-ZA-Zd4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EeR-Ot-0bh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gW8-Oi-mJi" secondAttribute="bottom" id="G3w-Kw-vs8"/>
+                            <constraint firstItem="gW8-Oi-mJi" firstAttribute="top" secondItem="wkM-ZA-Zd4" secondAttribute="bottom" id="JUO-aS-DVt"/>
+                            <constraint firstItem="wkM-ZA-Zd4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SR1-iI-Zvv"/>
+                            <constraint firstAttribute="trailing" secondItem="gW8-Oi-mJi" secondAttribute="trailing" id="YOi-GH-90g"/>
+                            <constraint firstItem="gW8-Oi-mJi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tAK-Mk-QTX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EeR-Ot-0bh"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="hourlyTableView" destination="gW8-Oi-mJi" id="Wmd-dL-SAN"/>
+                        <outlet property="topBar" destination="wkM-ZA-Zd4" id="IFZ-19-Ypp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="347.5" y="388.5"/>
         </scene>
     </scenes>
 </document>
