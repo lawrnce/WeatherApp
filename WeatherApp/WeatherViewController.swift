@@ -15,11 +15,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var hourlyTableView: UITableView!
     
     var locationManager: CLLocationManager!
-    var hourlyData: [(Int, Float)]!
+    var hourlyData: OrderedDictionary<String, [(String, Float)]>!
+    var shouldCallAPI: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
+        self.shouldCallAPI = true
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -66,7 +68,8 @@ class WeatherViewController: UIViewController {
 extension WeatherViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.hourlyData.count
+        let key = self.hourlyData.keys[section]
+        return (self.hourlyData[key]?.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,20 +89,29 @@ extension WeatherViewController: CLLocationManagerDelegate {
         // Stop location manager after we get the location once.
         manager.stopUpdatingLocation()
         
-        // Call the forecast api
-        WeatherService.getWeatherDataForCoordinate((manager.location?.coordinate)!, completion: { (json, error) -> Void in
+        // location manager does not stop immediately, so use a bool to check if we should call the api.
+        if (self.shouldCallAPI == true) {
+            self.shouldCallAPI = false
             
-            // Success
-            if (error == nil) {
+            // Call the forecast api
+            WeatherService.getWeatherDataForCoordinate((manager.location?.coordinate)!, completion: { (json, error) -> Void in
                 
-                // Parse the data and reload table view
-                self.hourlyData = HourlyTemperatureParser.parseJSON(json!)
-                self.hourlyTableView.reloadData()
-            
-            // Error
-            } else {
-               
-            }
-        })
+                // Success
+                if (error == nil) {
+                    
+                    // Check if data already exists
+                    if (self.hourlyData == nil) {
+                        
+                        // Parse the data and reload table view
+                        self.hourlyData = HourlyTemperatureParser.parseJSON(json!)
+                        self.hourlyTableView.reloadData()
+                    }
+
+                // Error
+                } else {
+                    
+                }
+            })
+        }
     }
 }

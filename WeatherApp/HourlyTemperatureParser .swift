@@ -12,26 +12,52 @@ import SwiftyJSON
 class HourlyTemperatureParser {
     
     /**
-        Parses raw JSON data from Forecast.io into a tuple array of time and temperature.
+        Parses raw JSON data from Forecast.io into format readable to the table view model.
      
         - Parameter json: JSON data from a Forecast.io call.
-        - Returns: An array of tuples of time and temperature.
+        - Returns: An ordered dictionary with key as the day and value as an array of times and temperature. 
     */
-    class func parseJSON(json: JSON) -> [(Int, Float)] {
-        var hourlyData: [(Int, Float)] = []
+    class func parseJSON(json: JSON) -> OrderedDictionary<String, [(String, Float)]> {
+        
+        var hourlyData = OrderedDictionary<String, [(String, Float)]>()
+        var currentDay: String!
+        
+        let dayFormatter = NSDateFormatter()
+        dayFormatter.dateFormat = "EEEE"
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "h a"
+        
+        // Read data from JSON
         for item in json["hourly"]["data"].arrayValue {
-            hourlyData.append((item["time"].int!, item["temperature"].float!))
+            
+            // cast timestamp to readable date
+            let date = NSDate(timeIntervalSince1970: item["time"].double!)
+            
+            // cast day
+            let dayString = dayFormatter.stringFromDate(date)
+            
+            // cast time
+            let timeString = timeFormatter.stringFromDate(date)
+ 
+            // set first day and check if new day
+            if (currentDay == nil || currentDay != dayString) {
+                currentDay = dayString
+                hourlyData[currentDay] = [(String, Float)]()
+            }
+            
+            // append new time and temperature
+            hourlyData[currentDay]?.append((timeString, item["temperature"].float!))
         }
+        
+        print(hourlyData)
         return hourlyData
     }
-    
-    /**
-        Casts a timestamp into a readable format.
-     
-        - Parameter timestamp: Timestamp to be casted.
-        - Returns: A string that
-     */
-    class func castEpochToReadableTime() -> String {
-        
-    }
 }
+
+
+
+
+
+
+
