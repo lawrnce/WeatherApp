@@ -75,13 +75,6 @@ extension WeatherViewController: UITableViewDataSource {
         return self.hourlyData.keys.count
     }
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        guard self.hourlyData != nil else {
-            return nil
-        }
-        return self.hourlyData.keys
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard self.hourlyData != nil else {
             return 0
@@ -102,11 +95,17 @@ extension WeatherViewController: UITableViewDataSource {
 // MARK: - Table View Delegate
 extension WeatherViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20.0))
-        
-        headerView.backgroundColor = UIColor.cyanColor()
-        
-        return headerView
+        let key = self.hourlyData.keys[section]
+        let sectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30.0))
+        sectionLabel.text = key
+        sectionLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
+        sectionLabel.backgroundColor = UIColor.whiteColor()
+        sectionLabel.textAlignment = .Center
+        return sectionLabel
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30.0
     }
 }
 

@@ -14,7 +14,6 @@ class HourlyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var currentIndicatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +25,8 @@ class HourlyTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        
+        timeLabel.text = ""
+        temperatureLabel.text = ""
     }
     
     // MARK: -- Setup
