@@ -44,4 +44,18 @@ class WeatherAppTests: XCTestCase {
         let result = HourlyTemperatureParser.parseJSON(testJSON)
         XCTAssertEqual("\(expectedOrderedDictionary)", "\(result)", "Expected parse tuple failed.")
     }
+    
+    func testReverseGeocoder() {
+        let expectation = expectationWithDescription("GET Location Name")
+        let reverseGeocoder = ReverseGeocoder()
+        let testCoordinate = CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522)
+        reverseGeocoder.reverseGeocode(testCoordinate) { (name, error) -> Void in
+            if (error == nil) {
+                if( name! == "Paris") {
+                    expectation.fulfill()
+                }
+            }
+        }
+        waitForExpectationsWithTimeout(5.0, handler: nil)
+    }
 }
