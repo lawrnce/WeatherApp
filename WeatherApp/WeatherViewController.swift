@@ -14,6 +14,8 @@ class WeatherViewController: UIViewController {
 
     @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var hourlyTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var alertImageView: UIImageView!
     
     private var locationManager: CLLocationManager!
     private var hourlyData: OrderedDictionary<String, [(time: String, temperature: String)]>!
@@ -30,6 +32,7 @@ class WeatherViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.alertImageView.hidden = true
         updateCurrentLocation()
     }
     
@@ -65,7 +68,14 @@ class WeatherViewController: UIViewController {
      */
     func updateCurrentLocation() {
         if (CLLocationManager.locationServicesEnabled() == true) {
-            self.locationManager.startUpdatingLocation()
+            if (CLLocationManager.authorizationStatus() == .Denied) {
+                self.alertImageView.image = UIImage(named: "EnableLocationServices")
+                self.alertImageView.hidden = false
+            } else {
+                self.activityIndicator.startAnimating()
+                self.locationManager.startUpdatingLocation()
+                self.alertImageView.hidden = true
+            }
         }
     }
     
@@ -88,7 +98,6 @@ class WeatherViewController: UIViewController {
     @IBAction func refreshButtonPressed(sender: AnyObject) {
         self.shouldCallAPI = true
         self.hourlyData = nil
-        self.hourlyTableView.hidden = true
         updateCurrentLocation()
     }
 }
@@ -153,12 +162,16 @@ extension WeatherViewController: CLLocationManagerDelegate {
                         self.hourlyData = HourlyTemperatureParser.parseJSON(json!)
                         self.hourlyTableView.reloadData()
                         self.hourlyTableView.hidden = false
+                        self.alertImageView.hidden = true
                     }
 
                 // Error
                 } else {
-                    
+                    self.alertImageView.image = UIImage(named: "NetworkError")
+                    self.alertImageView.hidden = false
                 }
+                
+                self.activityIndicator.stopAnimating()
             })
             
             // Reverse Geocode name
