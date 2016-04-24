@@ -19,16 +19,19 @@ class WeatherService {
     
     */
     class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(data: String, error: ErrorType?) -> Void) {
+        
         let apiCall = kFORECAST_API_URL + kFORECAST_API_KEY + "/\(coordinate.latitude),\(coordinate.longitude)"
-        Alamofire.request(.GET, apiCall)
+        
+        Alamofire.request(.GET, apiCall, parameters: ["units": "si", "exclude": "currently,minutely,daily,alerts,flags"])
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                    completion(data: "test", error: nil)
+                
+                if (response.response?.statusCode == 200) {
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                        completion(data: "test", error: nil)
+                    }
+                } else {
+                    
                 }
             }
     }
