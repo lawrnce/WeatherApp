@@ -8,6 +8,7 @@
 
 import CoreLocation
 import Alamofire
+import SwiftyJSON
 
 let kFORECAST_API_KEY = "5978bff4ccea26c30b3b97b0e818e369"
 let kFORECAST_API_URL = "https://api.forecast.io/forecast/"
@@ -18,20 +19,18 @@ class WeatherService {
      
     
     */
-    class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(data: String, error: ErrorType?) -> Void) {
+    class func getWeatherDataForCoordinate(coordinate: CLLocationCoordinate2D, completion:(data: JSON?, error: ErrorType?) -> Void) {
         
         let apiCall = kFORECAST_API_URL + kFORECAST_API_KEY + "/\(coordinate.latitude),\(coordinate.longitude)"
         
         Alamofire.request(.GET, apiCall, parameters: ["units": "si", "exclude": "currently,minutely,daily,alerts,flags"])
+            .validate()
             .responseJSON { response in
-                
-                if (response.response?.statusCode == 200) {
-                    if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
-                        completion(data: "test", error: nil)
-                    }
-                } else {
-                    
+                switch response.result {
+                case .Success:
+                    completion(data: JSON(data: response.data!), error: nil)
+                case .Failure(let error):
+                    completion(data: nil, error: error)
                 }
             }
     }
