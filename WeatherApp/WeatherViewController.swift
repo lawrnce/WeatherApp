@@ -12,6 +12,7 @@ import CoreLocation
 class WeatherViewController: UIViewController {
 
     var locationManager: CLLocationManager!
+    var hourlyData: [(time: Int, temperature: Float)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
         manager.stopUpdatingLocation()
         WeatherService.getWeatherDataForCoordinate((manager.location?.coordinate)!, completion: { (data, error) -> Void in
             if (error == nil) {
-                print(data)
+                self.hourlyData = HourlyTemperatureParser.parseData(data!)
+                print(self.hourlyData)
             } else {
                 print(error)
             }
